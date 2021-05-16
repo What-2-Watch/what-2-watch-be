@@ -88,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'what2watch',
-        'USER': 'hope',
+        'USER': 'trevor',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -143,3 +143,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
+
+AUTH_USER_MODEL = 'core.User'

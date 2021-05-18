@@ -10,6 +10,9 @@ from main.models import CustomUser
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+
+    def find_user_by_email(self, request, email):
+        breakpoint()
     # @api_view(['GET', 'PUT', 'DELETE'])
     # def user_detail(request, pk):
         # """
@@ -34,3 +37,17 @@ class UserViewSet(viewsets.ModelViewSet):
         # elif request.method == 'DELETE':
         #     user.delete()
         #     return Response(status=status.HTTP_204_NO_CONTENT)
+def get_user(email):
+    try:
+        return User.objects.get(email=email.lower())
+    except User.DoesNotExist:
+        return None
+
+def email_login_view(request):
+    email = request.POST['email']
+    password = request.POST['password']
+    username = get_user(email)
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)

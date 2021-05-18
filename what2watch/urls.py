@@ -25,9 +25,11 @@ from django.urls import include, path
 from rest_framework import routers
 from main import views
 from rest_framework.versioning import URLPathVersioning
+from django.contrib.auth.views import LoginView
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+# router.register(r'accounts', account.Views)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -40,5 +42,6 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
     path(r'v1/', include(router.urls)),
     path(r'v1/admin/', admin.site.urls),
+    path('v1/accounts/', include('allauth.urls')),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

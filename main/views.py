@@ -10,6 +10,9 @@ from main.models import CustomUser
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+
+    def find_user_by_email(self, request, email):
+        breakpoint()
     # @api_view(['GET', 'PUT', 'DELETE'])
     # def user_detail(request, pk):
         # """

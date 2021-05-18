@@ -17,3 +17,6 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=100, null=False, blank=False)
     language = models.CharField(max_length=5, null=False, blank=False, default=0)
     region = models.CharField(max_length=5, null=False, blank=False, default=0)
+
+    def __str__(self):
+        return self.email

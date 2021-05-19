@@ -7,6 +7,8 @@ class CustomUser(AbstractUser):
     pass
     username = None
     email = models.EmailField(max_length=100, unique=True, null=False, blank=False)
+    # subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -22,5 +24,3 @@ class Subscription(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     api_provider_id = models.PositiveIntegerField()
-
-    

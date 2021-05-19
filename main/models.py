@@ -17,3 +17,14 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=100, null=False, blank=False)
     language = models.CharField(max_length=5, null=False, blank=False, default=0)
     region = models.CharField(max_length=5, null=False, blank=False, default=0)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+class Subscription(models.Model):
+    user = models.ForeignKey(CustomUser, related_name='subscriptions', on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    api_provider_id = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name

@@ -1,11 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from main.models import CustomUser
-from main.serializers import UserSerializer
 from rest_framework.decorators import api_view, action
 from rest_framework import viewsets
 from main.models import CustomUser
+from main.serializers import UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()

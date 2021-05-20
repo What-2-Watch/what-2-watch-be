@@ -30,3 +30,27 @@ class Subscription(models.Model):
 
     def __str__(self):
         return self.name
+
+class Watchlist(models.Model):
+    user = models.ForeignKey(
+        CustomUser, related_name='watchlist', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    api_movie_id = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.title
+
+
+class Thumb(models.Model):
+    user = models.ForeignKey(
+        CustomUser, related_name='thumbs', on_delete=models.CASCADE)
+    api_actor_id = models.PositiveIntegerField()
+    api_director_id = models.PositiveIntegerField()
+    api_movie_id = models.PositiveIntegerField()
+    api_genre_id = models.PositiveIntegerField()
+    api_similar_id = models.PositiveIntegerField()
+    up = models.BooleanField()
+    title = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title

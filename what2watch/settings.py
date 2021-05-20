@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import django_heroku
 import os
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+env = environ.Env()
+environ.Env.read_env()
 
 # Application definition
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'main',
     'rest_framework',
+    'recommendations',
 ]
 
 MIDDLEWARE = [

@@ -24,6 +24,7 @@ from main.models import CustomUser
 from django.urls import include, path
 from rest_framework import routers
 from main import views
+from recommendations.views import get_movies
 from rest_framework.versioning import URLPathVersioning
 
 router = routers.DefaultRouter()
@@ -45,4 +46,5 @@ router.register(r'thumbs', views.ThumbViewSet)
 urlpatterns = [
     path(r'v1/', include(router.urls)),
     path(r'v1/admin/', admin.site.urls),
+    path(r'v1/movies', get_movies, name = 'get_movies'),
 ]

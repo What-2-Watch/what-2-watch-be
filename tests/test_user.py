@@ -34,11 +34,7 @@ class SubscriptionTestCase(TestCase):
         sub3.save()
         # user.save()
         record = Subscription.objects.get(id=1)
-<<<<<<< HEAD
-        breakpoint()
-=======
         # breakpoint()
->>>>>>> 5874ca2b6e00b5c7357ba20f62fe8ad0f0179108
         self.assertEqual(record.user.first_name, "john")
 
 # user.subscription_set.all().first()

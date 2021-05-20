@@ -1,0 +1,742 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /v1/users/:
+    get:
+      operationId: listCustomUsers
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - v1
+    post:
+      operationId: createCustomUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - v1
+  /v1/users/{id}/:
+    get:
+      operationId: retrieveCustomUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - v1
+    put:
+      operationId: updateCustomUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - v1
+    patch:
+      operationId: partialUpdateCustomUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - v1
+    delete:
+      operationId: destroyCustomUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - v1
+  /v1/subscriptions/:
+    get:
+      operationId: listSubscriptions
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'
+          description: ''
+      tags:
+      - v1
+    post:
+      operationId: createSubscription
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: ''
+      tags:
+      - v1
+  /v1/subscriptions/{id}/:
+    get:
+      operationId: retrieveSubscription
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this subscription.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: ''
+      tags:
+      - v1
+    put:
+      operationId: updateSubscription
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this subscription.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: ''
+      tags:
+      - v1
+    patch:
+      operationId: partialUpdateSubscription
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this subscription.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: ''
+      tags:
+      - v1
+    delete:
+      operationId: destroySubscription
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this subscription.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - v1
+  /v1/watchlists/:
+    get:
+      operationId: listWatchlists
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Watchlist'
+          description: ''
+      tags:
+      - v1
+    post:
+      operationId: createWatchlist
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watchlist'
+          description: ''
+      tags:
+      - v1
+  /v1/watchlists/{id}/:
+    get:
+      operationId: retrieveWatchlist
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this watchlist.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watchlist'
+          description: ''
+      tags:
+      - v1
+    put:
+      operationId: updateWatchlist
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this watchlist.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watchlist'
+          description: ''
+      tags:
+      - v1
+    patch:
+      operationId: partialUpdateWatchlist
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this watchlist.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Watchlist'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watchlist'
+          description: ''
+      tags:
+      - v1
+    delete:
+      operationId: destroyWatchlist
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this watchlist.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - v1
+  /v1/thumbs/:
+    get:
+      operationId: listThumbs
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Thumb'
+          description: ''
+      tags:
+      - v1
+    post:
+      operationId: createThumb
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thumb'
+          description: ''
+      tags:
+      - v1
+  /v1/thumbs/{id}/:
+    get:
+      operationId: retrieveThumb
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this thumb.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thumb'
+          description: ''
+      tags:
+      - v1
+    put:
+      operationId: updateThumb
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this thumb.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thumb'
+          description: ''
+      tags:
+      - v1
+    patch:
+      operationId: partialUpdateThumb
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this thumb.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Thumb'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thumb'
+          description: ''
+      tags:
+      - v1
+    delete:
+      operationId: destroyThumb
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this thumb.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - v1
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          maxLength: 100
+        first_name:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        language:
+          type: string
+          maxLength: 5
+        region:
+          type: string
+          maxLength: 5
+        subscriptions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              name:
+                type: string
+                maxLength: 200
+              api_provider_id:
+                type: integer
+                maximum: 2147483647
+                minimum: 0
+              user:
+                type: integer
+            required:
+            - name
+            - api_provider_id
+            - user
+          readOnly: true
+        watchlist:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              title:
+                type: string
+                maxLength: 200
+              api_movie_id:
+                type: integer
+                maximum: 2147483647
+                minimum: 0
+              user:
+                type: integer
+            required:
+            - title
+            - api_movie_id
+            - user
+          readOnly: true
+        thumbs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              title:
+                type: string
+                maxLength: 200
+              api_movie_id:
+                type: integer
+                maximum: 2147483647
+                minimum: 0
+              up:
+                type: boolean
+              api_actor_id:
+                type: integer
+                maximum: 2147483647
+                minimum: 0
+              api_director_id:
+                type: integer
+                maximum: 2147483647
+                minimum: 0
+              api_genre_id:
+                type: integer
+                maximum: 2147483647
+                minimum: 0
+              api_similar_id:
+                type: integer
+                maximum: 2147483647
+                minimum: 0
+              user:
+                type: integer
+            required:
+            - title
+            - api_movie_id
+            - up
+            - api_actor_id
+            - api_director_id
+            - api_genre_id
+            - api_similar_id
+            - user
+          readOnly: true
+      required:
+      - email
+      - first_name
+      - last_name
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        api_provider_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        user:
+          type: integer
+      required:
+      - name
+      - api_provider_id
+      - user
+    Watchlist:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        api_movie_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        user:
+          type: integer
+      required:
+      - title
+      - api_movie_id
+      - user
+    Thumb:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        api_movie_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        up:
+          type: boolean
+        api_actor_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        api_director_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        api_genre_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        api_similar_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        user:
+          type: integer
+      required:
+      - title
+      - api_movie_id
+      - up
+      - api_actor_id
+      - api_director_id
+      - api_genre_id
+      - api_similar_id
+      - user

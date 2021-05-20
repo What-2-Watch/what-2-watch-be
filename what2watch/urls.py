@@ -28,6 +28,11 @@ from rest_framework.versioning import URLPathVersioning
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'subscriptions', views.SubscriptionViewSet)
+router.register(r'watchlists', views.WatchlistViewSet)
+router.register(r'thumbs', views.ThumbViewSet)
+# router.register(r'subscriptions', views.SubscriptionViewSet)
+
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -40,5 +45,4 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
     path(r'v1/', include(router.urls)),
     path(r'v1/admin/', admin.site.urls),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

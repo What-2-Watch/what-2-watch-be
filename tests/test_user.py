@@ -8,10 +8,10 @@ import pytest
 from main.models import CustomUser
 from main.models import Subscription
 from django.test import TestCase
-@pytest.mark.django_db
-@pytest.fixture(autouse=True)
-def enable_db_access_for_all_tests(db):
-    pass
+# @pytest.mark.django_db
+# @pytest.fixture(autouse=True)
+# def enable_db_access_for_all_tests(db):
+#     pass
 
 def test_user():
     user = CustomUser(password="123456",first_name="john", last_name="doe", email="johndoe@blah.com", language='1234', region='NA')

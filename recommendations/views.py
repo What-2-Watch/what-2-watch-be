@@ -14,7 +14,11 @@ environ.Env.read_env()
 @renderer_classes((JSONRenderer,))
 def get_movies(request):
     url = "https://api.themoviedb.org/3/discover/movie"
-    params = {"api_key": env('API_KEY'), "language": "en-US", "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false", "page": "1", "with_watch_providers": "2|8", "watch_region": "US"}
+    language = request.GET.get('language', "")
+    region = request.GET.get('region', "")
+    watch_providers = request.GET.get('watch_providers', "")
+    genre = request.GET.get("genre", "")
+    params = {"api_key": env('API_KEY'), "language": language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false", "page": "1", "with_watch_providers": watch_providers, "watch_region": region, "with_genres": genre}
     response = requests.get(url, params=params)
     movies = response.json()
     return Response(movies, status=status.HTTP_200_OK)

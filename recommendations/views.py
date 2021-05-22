@@ -20,9 +20,10 @@ def recommendations_by_genre(user):
 def user_subscriptions(user):
     provider_ids = user.subscriptions.values_list('api_provider_id', flat=True)
     content = []
-    for 
-    breakpoint()
-    provider_ids
+    for id in provider_ids:
+        content.append(str(id))
+    pipe_separated = "|".join(content)
+    return pipe_separated
 
 @api_view(['GET'])
 @renderer_classes((JSONRenderer,))

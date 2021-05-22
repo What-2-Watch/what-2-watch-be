@@ -14,8 +14,29 @@ environ.Env.read_env()
 # Create your views here.
 
 def recommendations_by_genre(user):
-    count = user.thumbs.values_list('api_genre_id').annotate(genre_count=Count('api_genre_id')).order_by('-genre_count')
-    return count[0][0]
+    count = user.thumbs.filter(up=True).values_list('api_genre_id').annotate(genre_count=Count('api_genre_id')).order_by('-genre_count')
+    if count[0][1] >= 3:
+        return count[0][0]
+    else:
+        return ''
+
+
+def recommendations_by_actor(user):
+    count = user.thumbs.filter(up=True).values_list('api_actor_id').annotate(
+        actor_count=Count('api_actor_id')).order_by('-actor_count')
+    if count[0][1] >= 3:
+        return count[0][0]
+    else:
+        return ''
+
+
+def recommendations_by_director(user):
+    count = user.thumbs.filter(up=True).values_list('api_director_id').annotate(
+        director_count=Count('api_director_id')).order_by('-director_count')
+    if count[0][1] >= 3:
+        return count[0][0]
+    else: 
+        return ''
 
 def user_subscriptions(user):
     provider_ids = user.subscriptions.values_list('api_provider_id', flat=True)
@@ -34,8 +55,17 @@ def get_movies(request):
     language = user.language
     region = user.region
     watch_providers = user_subscriptions(user)
-    genre = recommendations_by_genre(user)
-    params = {"api_key": env('API_KEY'), "language": language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false", "page": "1", "with_watch_providers": watch_providers, "watch_region": region, "with_genres": genre}
-    response = requests.get(url, params=params)
-    movies = response.json()
-    return Response(movies, status=status.HTTP_200_OK)
+    if user.thumbs.count() >= 10:
+        genre = recommendations_by_genre(user)
+        actor = recommendations_by_actor(user)
+        director = recommendations_by_director(user)
+        params = {"api_key": env('API_KEY'), "language": language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false", "page": "1", "with_watch_providers": watch_providers, "watch_region": region, "with_genres": genre, "with_cast": actor, "with_crew": director}
+        response = requests.get(url, params=params)
+        movies = response.json()
+        return Response(movies, status=status.HTTP_200_OK)
+    else:
+        params = {"api_key": env('API_KEY'), "language": language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false",
+              "page": "1", "with_watch_providers": watch_providers, "watch_region": region}
+        response = requests.get(url, params=params)
+        movies = response.json()
+        return Response(movies, status=status.HTTP_200_OK)

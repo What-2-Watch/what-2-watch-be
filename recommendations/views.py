@@ -8,6 +8,7 @@ import environ
 from environ import Env
 from main.models import CustomUser, Thumb
 from django.db.models import Count
+import random
 
 env = environ.Env()
 environ.Env.read_env()
@@ -46,26 +47,33 @@ def user_subscriptions(user):
     pipe_separated = "|".join(content)
     return pipe_separated
 
+def recommendations_by_genre_actor(user):
+    return {"api_key": env('API_KEY'), "language": user.language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false",
+            "page": "1", "with_watch_providers": user_subscriptions(user), "watch_region": user.region, "with_genre": recommendations_by_genre(user), "with_cast": recommendations_by_actor(user)}
+
+
+def recommendations_by_genre_director(user):
+    return {"api_key": env('API_KEY'), "language": user.language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false",
+            "page": "1", "with_watch_providers": user_subscriptions(user), "watch_region": user.region, "with_genre": recommendations_by_genre(user), "with_crew": recommendations_by_director(user)}
+
+
+def recommendations_by_actor_director(user):
+    return {"api_key": env('API_KEY'), "language": user.language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false",
+     "page": "1", "with_watch_providers": user_subscriptions(user), "watch_region": user.region, "with_cast": recommendations_by_actor(user), "with_crew": recommendations_by_director(user)}
+
+def determine_params(user):
+    if user.thumbs.count() >= 10:
+        random_recommendation = [recommendations_by_genre_actor(user), recommendations_by_genre_director(user), recommendations_by_actor_director(user)]
+        return random.choice(random_recommendation)
+    else:
+        return {"api_key": env('API_KEY'), "language": user.language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false", "page": "1", "with_watch_providers": user_subscriptions(user), "watch_region": user.region}
+
 @api_view(['GET'])
 @renderer_classes((JSONRenderer,))
 def get_movies(request):
-    user_id = request.GET.get('user')
-    user = CustomUser.objects.get(pk=user_id)
-    url = "https://api.themoviedb.org/3/discover/movie"
-    language = user.language
-    region = user.region
-    watch_providers = user_subscriptions(user)
-    if user.thumbs.count() >= 10:
-        genre = recommendations_by_genre(user)
-        actor = recommendations_by_actor(user)
-        director = recommendations_by_director(user)
-        params = {"api_key": env('API_KEY'), "language": language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false", "page": "1", "with_watch_providers": watch_providers, "watch_region": region, "with_genres": genre, "with_cast": actor, "with_crew": director}
-        response = requests.get(url, params=params)
-        movies = response.json()
-        return Response(movies, status=status.HTTP_200_OK)
-    else:
-        params = {"api_key": env('API_KEY'), "language": language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false",
-              "page": "1", "with_watch_providers": watch_providers, "watch_region": region}
-        response = requests.get(url, params=params)
-        movies = response.json()
-        return Response(movies, status=status.HTTP_200_OK)
+    user = CustomUser.objects.get(pk=request.GET.get('user'))
+    params = determine_params(user)
+    response = requests.get("https://api.themoviedb.org/3/discover/movie", params=params)
+    movies = response.json()
+    return Response(movies, status=status.HTTP_200_OK)
+

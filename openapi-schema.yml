@@ -543,6 +543,21 @@ paths:
           description: ''
       tags:
       - v1
+  /v1/movies:
+    get:
+      operationId: listget_movies
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - v1
 components:
   schemas:
     User:

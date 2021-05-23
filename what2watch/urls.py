@@ -13,11 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# from django.urls import path
-#
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-# ]
 
 from django.contrib import admin
 from main.models import CustomUser
@@ -39,12 +34,11 @@ router.register(r'thumbs', views.ThumbViewSet)
 # Additionally, we include login URLs for the browsable API.
 # urlpatterns = [
 #     path('', include(router.urls)),
-#     path('admin/', admin.site.urls),
-#     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-# ]
+#     path('admin/', admin.] #
 
 urlpatterns = [
     path(r'v1/', include(router.urls)),
     path(r'v1/admin/', admin.site.urls),
     path(r'v1/movies', get_movies, name = 'get_movies'),
+    path(r'v1/rest-auth/', include('rest_auth.urls')),
 ]

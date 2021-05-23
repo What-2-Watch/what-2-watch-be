@@ -9,8 +9,8 @@
 
 ## Contributors
 - Hope McGee | [LinkedIn](linkedin.com/in/hope-mcgee/) | other socials
-- Trevor Robinson | LinkedIn | other socials
-- Garrett Cottrell | LinkedIn | other socials
+- Trevor Robinson | [LinkedIn](https://www.linkedin.com/in/trevor-robinson-0bb251207/) | other socials
+- Garrett Cottrell | [LinkedIn](https://www.linkedin.com/in/garrett-cottrell-52850834/) | other socials
 
 ## Requirements
 - Python 3.9.4

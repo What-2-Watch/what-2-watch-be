@@ -91,6 +91,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'what2watch.wsgi.application'
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'main.serializers.UserSerializer',
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

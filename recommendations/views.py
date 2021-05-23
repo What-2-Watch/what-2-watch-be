@@ -82,8 +82,6 @@ def remove_thumbs_down(user, movies):
             good_movies.append(movie)
     return good_movies
 
-
-
 @api_view(['GET'])
 @renderer_classes((JSONRenderer,))
 def get_movies(request):

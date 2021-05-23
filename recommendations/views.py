@@ -36,7 +36,7 @@ def recommendations_by_director(user):
         director_count=Count('api_director_id')).order_by('-director_count')
     if count[0][1] >= 3:
         return count[0][0]
-    else: 
+    else:
         return ''
 
 def user_subscriptions(user):
@@ -68,6 +68,22 @@ def determine_params(user):
     else:
         return {"api_key": env('API_KEY'), "language": user.language, "sort_by": "popularity.desc", "include_adult": "false", "include_video": "false", "page": "1", "with_watch_providers": user_subscriptions(user), "watch_region": user.region}
 
+def remove_thumbs_down(user, movies):
+    thumbs_down = user.thumbs.filter(up=False).values_list('api_movie_id', flat=True)
+    content = []
+    movie_list = movies['results']
+    for id in thumbs_down:
+        content.append(id)
+    good_movies = []
+    for movie in movie_list:
+        if movie['id'] in content:
+            continue
+        else:
+            good_movies.append(movie)
+    return good_movies
+
+
+
 @api_view(['GET'])
 @renderer_classes((JSONRenderer,))
 def get_movies(request):
@@ -75,5 +91,5 @@ def get_movies(request):
     params = determine_params(user)
     response = requests.get("https://api.themoviedb.org/3/discover/movie", params=params)
     movies = response.json()
-    return Response(movies, status=status.HTTP_200_OK)
-
+    good_movies = {'results': remove_thumbs_down(user, movies)}
+    return Response(good_movies, status=status.HTTP_200_OK)

@@ -28,6 +28,9 @@ class Subscription(models.Model):
     name = models.CharField(max_length=200)
     api_provider_id = models.PositiveIntegerField()
 
+    class Meta:
+        unique_together = ('user', 'api_provider_id')
+
     def __str__(self):
         return self.name
 
@@ -36,6 +39,9 @@ class Watchlist(models.Model):
         CustomUser, related_name='watchlist', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     api_movie_id = models.PositiveIntegerField()
+
+    class Meta:
+        unique_together = ('user', 'api_movie_id')
 
     def __str__(self):
         return self.title
@@ -51,6 +57,9 @@ class Thumb(models.Model):
     api_similar_id = models.PositiveIntegerField()
     up = models.BooleanField()
     title = models.CharField(max_length=200)
+
+    class Meta:
+        unique_together = ('user', 'api_movie_id')
 
     def __str__(self):
         return self.title

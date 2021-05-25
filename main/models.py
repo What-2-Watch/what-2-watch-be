@@ -50,11 +50,11 @@ class Watchlist(models.Model):
 class Thumb(models.Model):
     user = models.ForeignKey(
         CustomUser, related_name='thumbs', on_delete=models.CASCADE)
-    api_actor_id = models.PositiveIntegerField()
-    api_director_id = models.PositiveIntegerField()
+    api_actor_id = models.PositiveIntegerField(null=True)
+    api_director_id = models.PositiveIntegerField(null=True)
     api_movie_id = models.PositiveIntegerField()
-    api_genre_id = models.PositiveIntegerField()
-    api_similar_id = models.PositiveIntegerField()
+    api_genre_id = models.PositiveIntegerField(null=True)
+    api_similar_id = models.PositiveIntegerField(null=True)
     up = models.BooleanField()
     title = models.CharField(max_length=200)
 

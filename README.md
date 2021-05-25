@@ -77,7 +77,7 @@ Main path:
 ### Login
 
   ```
-  /v1/rest-auth/login
+  /v1/rest-auth/login/
     
     post:
       - Authenticates a user's login credentials. Requires a JSON body with the following fields:

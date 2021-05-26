@@ -1,14 +1,36 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view, action
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework import filters
 from main.models import CustomUser, Subscription, Watchlist, Thumb
 from main.serializers import UserSerializer, SubscriptionSerializer, WatchlistSerializer, ThumbSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+
+    def create(self, request):
+        """ This validates and saves the registered regular user
+         in the database. """
+
+        serializer = UserSerializer(data=request.data)
+        queryset = CustomUser.objects.all()
+
+        if serializer.is_valid():
+            serializer.save()
+            id = serializer.data.get('id')
+            name = serializer.data.get('name')
+            last_name = serializer.data.get('last_name')
+            message = "Hellow ID:{}, {} {}".format(id, name, last_name)
+
+            return Response({'message':message})
+        else:
+            return Response(serializer.errors,
+             status=status.HTTP_400_BAD_REQUEST)
     # @api_view(['GET', 'PUT', 'DELETE'])
     # def user_detail(request, pk=0):
         # """

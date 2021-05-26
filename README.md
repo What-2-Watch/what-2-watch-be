@@ -73,6 +73,23 @@ Main path:
     delete:
       - Deletes the specified user. Doesn't require a body or any params.
   ```
+  
+### Login
+
+  ```
+  /v1/rest-auth/login/
+    
+    post:
+      - Authenticates a user's login credentials. Requires a JSON body with the following fields:
+        - email (string)
+        - password (string)
+      - If given credientials are valid, returns a unique user token. Otherwise, returns an error.
+      
+  /v1/rest-auth/user/
+  
+    get:
+      -Returns a user's details if a valid user token is present. If no token is present, returns an error.
+  ```
 
 ### Subscriptions
 
@@ -193,7 +210,8 @@ Main path:
 ### Recommendations
 
 ```
-  /v1/movies/
+  /v1/movies?user={id}/:
+    
     get:
       - fetches recommended movies for a user based on our data and TMDB's. Requires a "user" query param that is the user's ID in order to provide personalized recommendations. Without a "user" param, the returned data will be based on popular movies (according to TMDB).
       - This endpoint doesn't refer to a table, and as such, does not have CRUD functionality.

@@ -24,6 +24,8 @@ This app uses data from [The Movie DataBase API V3](https://api.themoviedb.org/3
 
 This app is tested using Django-Pytest.
 
+[Companion Front-End app](https://github.com/What-2-Watch/what-2-watch-fe)
+
 ## Routes:
 Main path:
 ```
